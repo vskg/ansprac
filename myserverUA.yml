@@ -1,27 +1,26 @@
 ---
- - hosts: webservers
-   become: yes
-   tasks: 
-   - name: install webserver on ubuntu16
-     apt:
-       name: "{{ webserveronubuntu }}"
-       state: present
-      when: ansible_os_family =="Debian"
+- hosts: webservers
+  become: yes
+  tasks:
+  - name: install webserver on ubuntu16 node
+    apt:
+      name: "{{ webserveronubuntu }}"
+      state: present
+    when: ansible_os_family =="Debian"
 
-   - name: start webserver on ubuntu16
-     service:
-       name: "{{ webserveronubuntu }}"   
-       state: started
-      when: ansible_os_family =="Debian" 
+  - name:  start webserver of ubuntu16
+    service:
+      name: "{{ webserveronubuntu }}"
+      state: started
+    when: ansible_os_family =="Debian"
 
-   - name: install webserver on amazon
-     apt:
-       name: "{{ webserveronamazon }}" 
-       state: present
-      when: ansible_os_family =="RedHat"
-
-   - name: install webserver on amazon
-     service:
-       name: "{{ webserveronamazon }}" 
-       state: started
-      when: ansible_os_family =="RedHat"     
+  - name: install webserver on amazan
+    yum:
+      name: "{{ webserveronamazon }}"
+      state: present
+    when: ansible_os_family =="RedHat"
+  - name: start webserver of amazan
+    service:
+      name: "{{ webserveronamazon }}"
+      state: started
+    when: ansible_os_family =="RedHat"
