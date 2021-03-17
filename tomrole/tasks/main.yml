@@ -6,7 +6,7 @@
     state: present
 - name: copy my tom config
   template:
-     src: mytomconfig.j2
+     src: tomconfig.j2
      dest: /etc/default/tomcat7    
   notify: restarttomcat
 
@@ -21,6 +21,6 @@
 
 - name: copy tomcatuser file interface
   template:
-    src: mytomusers.j2
+    src: tomusers.j2
     dest:  /etc/tomcat7/tomcat-users.xml
   notify: restarttomcat
